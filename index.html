@@ -51,9 +51,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100dvh;
+            height: 100vh;
             overscroll-behavior-y: none; 
-            overflow-y: auto;
+            overflow: hidden;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -111,7 +111,7 @@
             width: 100%;
             max-width: 500px;
             padding-top: 10px;
-            overflow: visible; 
+            overflow: hidden; 
         }
 
         #board-container { 
@@ -120,9 +120,9 @@
         }
 
         #board {
-            /* Changed to 8 rows for kids */
-            display: grid; grid-template-rows: repeat(8, 1fr); grid-gap: 5px;
-            width: 100%; max-width: 350px; aspect-ratio: 5 / 8; max-height: 100%;
+            /* Standard 6 rows */
+            display: grid; grid-template-rows: repeat(6, 1fr); grid-gap: 5px;
+            width: 100%; max-width: 350px; aspect-ratio: 5 / 6; max-height: 100%;
         }
 
         .row { display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 5px; }
@@ -318,7 +318,7 @@
 
         function initBoard() {
             board.innerHTML = "";
-            for (let i = 0; i < 8; i++) { // Increased to 8 guesses
+            for (let i = 0; i < 6; i++) { // Reverted to 6 guesses
                 let row = document.createElement("div");
                 row.className = "row";
                 row.id = `row-${i}`;
@@ -519,7 +519,7 @@
                 const praises = ["Genius", "Magnificent", "Impressive", "Splendid", "Great", "Nice", "Good", "Phew"];
                 showToast(praises[currentRow], 3000);
                 setTimeout(() => showEndScreen(true, false), 1500);
-            } else if (currentRow === 7) { // Updated to 8 guesses (0-indexed)
+            } else if (currentRow === 5) { // Reverted to 6 guesses (0-indexed)
                 isGameOver = true;
                 showToast(targetWord, Infinity);
                 setTimeout(() => showEndScreen(false, false), 1500);
